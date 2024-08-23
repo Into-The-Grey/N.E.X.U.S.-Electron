@@ -1,0 +1,28 @@
+{
+  "name": "nexus-electron",
+  "version": "1.0.0",
+  "description": "The Official Desktop application for Project N.E.X.U.S.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Into-The-Grey/N.E.X.U.S.-Electron.git"
+  },
+  "keywords": [
+    "AI",
+    "Electron",
+    "desktop",
+    "assistant"
+  ],
+  "author": "NCA-Gelid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Into-The-Grey/N.E.X.U.S.-Electron/issues"
+  },
+  "homepage": "https://github.com/Into-The-Grey/N.E.X.U.S.-Electron#readme",
+  "devDependencies": {
+    "electron": "^32.0.1"
+  }
+}
