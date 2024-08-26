@@ -3,10 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS Electron App</title>
+    <title>N.E.X.U.S.</title>
 </head>
 <body>
-    <h1>Welcome to NEXUS</h1>
-    <p>This is your first Electron app!</p>
+    <h1>N.E.X.U.S. Electron Interface</h1>
+    <button id="connectButton">Connect to WebSocket</button>
+    <div id="messages"></div>
+
+    <script>
+        const connectButton = document.getElementById('connectButton');
+        const messagesDiv = document.getElementById('messages');
+        let socket;
+
+        connectButton.addEventListener('click', () => {
+            socket = new WebSocket('ws://192.168.1.147:8000/ws');
+            socket.onopen = () => {
+                console.log('WebSocket connection established.');
+                socket.send('Hello Server!');
+            };
+            socket.onmessage = (event) => {
+                const message = document.createElement('p');
+                message.textContent = `Message from server: ${event.data}`;
+                messagesDiv.appendChild(message);
+            };
+            socket.onclose = () => {
+                console.log('WebSocket connection closed.');
+            };
+            socket.onerror = (error) => {
+                console.error('WebSocket error:', error);
+            };
+        });
+    </script>
 </body>
 </html>
