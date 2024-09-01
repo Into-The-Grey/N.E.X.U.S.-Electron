@@ -1,38 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>N.E.X.U.S.</title>
+    <link rel="stylesheet" href="assets/styles.css">
 </head>
+
 <body>
-    <h1>N.E.X.U.S. Electron Interface</h1>
-    <button id="connectButton">Connect to WebSocket</button>
-    <div id="messages"></div>
+    <div class="container">
+        <header class="header">
+            <h1>N.E.X.U.S.</h1>
+            <nav class="menu">
+                <ul>
+                    <li><a href="#">Menu</a></li>
+                </ul>
+            </nav>
+        </header>
 
-    <script>
-        const connectButton = document.getElementById('connectButton');
-        const messagesDiv = document.getElementById('messages');
-        let socket;
+        <aside class="sidebar">
+            <ul>
+                <li><a href="#" data-modal="finance">Finance</a></li>
+                <li><a href="#" data-modal="tasks">Tasks</a></li>
+                <li><a href="#" data-modal="contacts">Contacts</a></li>
+                <li><a href="#" data-modal="settings">Settings</a></li>
+            </ul>
+        </aside>
 
-        connectButton.addEventListener('click', () => {
-            socket = new WebSocket('ws://192.168.1.147:8000/ws');
-            socket.onopen = () => {
-                console.log('WebSocket connection established.');
-                socket.send('Hello Server!');
-            };
-            socket.onmessage = (event) => {
-                const message = document.createElement('p');
-                message.textContent = `Message from server: ${event.data}`;
-                messagesDiv.appendChild(message);
-            };
-            socket.onclose = () => {
-                console.log('WebSocket connection closed.');
-            };
-            socket.onerror = (error) => {
-                console.error('WebSocket error:', error);
-            };
-        });
-    </script>
+        <main class="main-content">
+            <section class="visualizer">
+                <h2>Live Visualizer of Current Tasks</h2>
+                <div class="audio-visualizer"></div>
+                <p>Current Task: <span id="current-task">Idle</span></p>
+            </section>
+        </main>
+
+        <div class="right-panel">
+            <section class="database">
+                <h2>Database</h2>
+                <div class="database-monitor">
+                    <!-- Database resource monitor -->
+                </div>
+            </section>
+            <section class="suggestions">
+                <h2>Suggestions</h2>
+                <div class="suggestions-list">
+                    <!-- Suggestions content -->
+                </div>
+            </section>
+            <section class="logs">
+                <h2>Logs</h2>
+                <div class="log-list">
+                    <!-- Logs content -->
+                </div>
+            </section>
+        </div>
+
+        <footer class="footer">
+            <section class="calendar">
+                <h2>Calendar</h2>
+                <div class="calendar-container">
+                    <!-- Full calendar view with controls -->
+                </div>
+            </section>
+            <section class="notifications">
+                <h2>Real-time Notifications</h2>
+                <div class="notification-list">
+                    <!-- Notifications content -->
+                </div>
+            </section>
+        </footer>
+    </div>
+
+    <!-- Modals for Finance, Tasks, Contacts, Settings -->
+    <div id="finance-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="finance">&times;</span>
+            <h2>Finance</h2>
+            <!-- Finance content here -->
+        </div>
+    </div>
+
+    <div id="tasks-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="tasks">&times;</span>
+            <h2>Tasks</h2>
+            <!-- Tasks content here -->
+        </div>
+    </div>
+
+    <div id="contacts-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="contacts">&times;</span>
+            <h2>Contacts</h2>
+            <!-- Contacts content here -->
+        </div>
+    </div>
+
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="settings">&times;</span>
+            <h2>Settings</h2>
+            <!-- Settings content here -->
+        </div>
+    </div>
+
+    <script src="assets/script.js"></script>
 </body>
+
 </html>
