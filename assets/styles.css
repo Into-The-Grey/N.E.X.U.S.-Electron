@@ -11,10 +11,12 @@ body {
     display: grid;
     grid-template-areas:
         "header header"
+        "menu menu"
         "sidebar main"
+        "sidebar right-panel"
         "footer footer";
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto 40px 1fr 200px auto;
     height: 100vh;
 }
 
@@ -24,8 +26,7 @@ body {
     color: #fff;
     padding: 20px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
     position: relative;
 }
 
@@ -33,36 +34,50 @@ body {
     margin: 0;
 }
 
-.menu ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+/* Centered Menu Styling */
+.centered-menu {
+    grid-area: menu;
+    display: flex;
+    justify-content: center;
     position: relative;
 }
 
-.menu ul li {
-    display: inline;
-    position: relative;
-}
-
-.menu ul li a {
+#menu-button {
+    background-color: #444;
     color: #fff;
-    text-decoration: none;
-}
-
-.menu ul li:hover .dropdown {
-    display: block;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    width: auto; /* Adjust to match the title width */
+    text-align: center;
 }
 
 .dropdown {
     display: none;
     position: absolute;
-    background-color: #444;
-    min-width: 100px;
     top: 100%;
-    left: 0;
+    background-color: #444;
     padding: 10px;
     border-radius: 4px;
+    list-style: none;
+    margin: 0;
+    width: 100%; /* Make dropdown as wide as the button */
+    text-align: center;
+}
+
+#menu-button:focus + .dropdown,
+#menu-button:hover + .dropdown {
+    display: block;
+}
+
+.dropdown li {
+    margin-bottom: 10px;
+}
+
+.dropdown li a {
+    color: #fff;
+    text-decoration: none;
 }
 
 .sidebar {
@@ -70,6 +85,7 @@ body {
     background-color: #444;
     color: #fff;
     padding: 20px;
+    width: 180px; /* Reduced width */
 }
 
 .sidebar ul {
@@ -96,6 +112,10 @@ body {
     border-radius: 8px;
     margin: 20px;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
 }
 
 .visualizer {
@@ -116,10 +136,13 @@ body {
 }
 
 .right-panel {
-    grid-area: main;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    grid-area: right-panel;
+    display: grid;
+    grid-template-areas:
+        "database suggestions"
+        "logs logs";
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
     padding: 20px;
     background-color: #1e1e26;
     border-left: 1px solid #444;
@@ -130,6 +153,9 @@ body {
     background-color: #2e2e36;
     border-radius: 8px;
     border: 1px solid #444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .footer {
@@ -166,7 +192,7 @@ body {
 
 .modal-content {
     background-color: #444;
-    margin: 15% auto;
+    margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
