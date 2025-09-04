@@ -24,6 +24,6 @@
   },
   "homepage": "https://github.com/Into-The-Grey/N.E.X.U.S.-Electron#readme",
   "devDependencies": {
-    "electron": "^32.0.1"
+    "electron": "^35.7.5"
   }
 }
